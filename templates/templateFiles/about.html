@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block content %}
+    {% if session.get('error') %}
+      <div class="mt-5 alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> {{ session.get('error') }}
+        <button onclick="poperrors()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+    
+    <h3 class="mt-5 mb-3">About Us</h3>  
+
+    <p>This project is devloed as Machine Learning project by:</p>
+    <ul>
+        <li>Darshil Jain (PGI20CA010) <a href="mailto:2020pgicadarshil10@poornima.org">📧</a></li>
+        <li>Aarin Luwaria (PGI20CA001) <a href="mailto:2020pgicaaarin01@poornima.org">📧</a></li>
+        <li>Jagdeep Mahala (PGI20CA014) <a href="mailto:2020pgicajagdeep14@poornima.org">📧</a></li>
+    </ul>
+    <br><br>
+    <p>For source code:</p>
+    <ul>
+        <li>Step 1: Click the below url</li>
+        <li>Step 2: Give this repository a ★</li>
+        <li>Step 3: Download and enjoy</li>
+        <li style="list-style: none;"><a href="https://github.com/pihujain9898/">Download</a></li>
+    </ul>
+
+{% endblock %}

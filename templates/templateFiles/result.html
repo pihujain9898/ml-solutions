@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+{% block content %}
+    {% if session.get('error') %}
+      <div class="mt-5 alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> {{ session.get('error') }}
+        <button onclick="poperrors()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+    
+    <h1 class="mt-5 mb-5" style="text-transform: uppercase;">{{selected_model}} RESULTS</h1>  
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+            <h2>Confusion Matrix</h2>
+            <br>
+            <div class="row">
+                <div class="col-6"><h2>{{cm[0][0]}}</h2></div>
+                <div class="col-6"><h2>{{cm[0][1]}}</h2></div>
+                <div class="col-6"><h2>{{cm[1][0]}}</h2></div>
+                <div class="col-6"><h2>{{cm[1][1]}}</h2></div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <h2><em>Accuracy: </em> {{accuracy}}%</h2>
+            <h2><em>Precision: </em> {{precision}}%</h2>
+            <h2><em>Recall: </em> {{recall}}%</h2>
+            <h2><em>F-Measure: </em> {{score}}%</h2>
+        </div>
+    </div>
+    <a class="btn btn-primary mt-4" href="/preprocess">Try Another Model</a>
+    
+    
+    
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block content %}
+    {% if session.get('error') %}
+      <div class="mt-5 alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> {{ session.get('error') }}
+        <button onclick="poperrors()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+    {% if conditions %}
+    <div class="mt-5 error-notification">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        {{ fileUrl }}
+    </div>
+    {% endif %}
+    <div class="fluid-container">
+        <form action="/upload" method="POST" id="fileForm" enctype="multipart/form-data">
+            <div class="mt-5 mb-1 drag-box">
+                <label for="fileInput"><i class="bi bi-cloud-upload-fill fs-1"></i></label>
+                <label for="fileInput">Upload the dataset</label>
+                <input type="file" id="fileInput" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" name="dataset">
+            </div>
+            <p class="drag-msg">*Data file must be in csv format.</p>
+            <!-- <p class="drag-msg">*Data file must be in csv, xls, xlsx format file.</p> -->
+            <!-- <p class="drag-msg">*Data file size must be in between 1Byte to 16MB</p> -->
+        </form>
+    </div>
+{% endblock %}

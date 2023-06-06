@@ -1,0 +1,68 @@
+/* ########### Basic Configurations(CSS Resets) ########### */
+
+
+*,*::after{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 0.15rem;
+    word-spacing: 0.15rem;
+    line-height: 2rem;
+}
+body {
+    margin: 0 10vw;
+}
+.spacer{
+    height: 10vh;
+}
+/* #################### Navbar #################### */
+.custom-nav{
+    margin-top: 1rem;
+    position: fixed;
+    width: calc(100% - 20vw);
+}
+.nav-link {
+    color: rgb(187, 187, 187);
+}
+.nav-link:hover,
+.navbar-brand:hover {
+    color: rgb(234, 234, 234);
+}
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+.navbar-brand,
+.navbar-nav .nav-link.active {
+    color: rgb(236, 236, 236);
+}
+
+
+/* ##################### Upload Page ##################### */
+.drag-box {
+    border: 2px solid lightgrey;
+    height: 40vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.drag-box label,
+.drag-box label i {
+    display: block;
+    text-align: center;
+}
+
+.drag-box input[type=file] {
+    position: absolute;
+    top: 0;
+    display: block;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+.drag-msg{
+    font-size: small;
+    color: grey;
+    margin-bottom: 0.1rem;
+}

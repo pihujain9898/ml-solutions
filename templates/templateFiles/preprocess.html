@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% block content %}
+{% if session.get('error') %}
+<div class="mt-5 alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error!</strong> {{ session.get('error') }}
+  <button onclick="poperrors()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+<div class="eda-content">
+    <h3 class="mt-5">Select the model</h3>
+
+    <form action="/preprocess" method="GET">
+        <div class="row">
+            {% for item in model_list %}                 
+                <div class="col-12 d-flex align-items-center">
+                    <input class="form-check-input me-3" type="radio" name="selected_model" id="radio-{{item}}" value="{{item}}" 
+                    {% if item == selected_model %} checked=true {% endif %}>
+                    <label for="radio-{{item}}">{{item}}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <input class="btn btn-primary mt-3" type="submit" value="Procced">
+    </form>
+
+
+</div>
+
+{% endblock %}

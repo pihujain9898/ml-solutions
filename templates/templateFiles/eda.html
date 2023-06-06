@@ -1,0 +1,71 @@
+{% extends "main.html" %}
+{% block content %}
+{% if session.get('error') %}
+<div class="mt-5 alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error!</strong> {{ session.get('error') }}
+  <button onclick="poperrors()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+<div class="eda-content">
+    <h3 class="mt-5">Header of Dataset</h3>
+    <div class="table-responsive">
+        {% for table in head %}
+                    {{df_titles[loop.index]}}
+                    {{ table|safe }}
+        {% endfor %}
+    </div>
+    <h3 class="mt-5">Footer of Dataset</h3>
+    <div class="table-responsive">
+        {% for table in tail %}
+                    {{df_titles[loop.index]}}
+                    {{ table|safe }}
+        {% endfor %}
+    </div>
+    <h3 class="mt-5">Description of Dataset</h3>
+    <div class="table-responsive">
+        {% for table in describe %}
+                    {{df_titles[loop.index]}}
+                    {{ table|safe }}
+        {% endfor %}
+    </div>
+    <p>Data Rows: {{shape[0]}}</p>
+    <p>Data Columns: {{shape[1]}}</p>
+    
+
+
+    <h3 class="mt-5">Drop Useless Columns</h3>
+    <form action="/eda" method="GET">
+        <div class="row">
+            {% for title in titles %}                 
+                <div class="col-lg-3 col-sm-6 d-flex align-items-center">
+                    <input class="form-check-input me-3" type="checkbox" name="ignore_columns" id="checkbox-{{title}}" value="{{title}}" 
+                    {% if title in ignore_columns %} checked=true {% endif %}>
+                    <label for="checkbox-{{title}}">{{title}}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <input class="btn btn-primary mt-3" type="submit" value="Submit">
+
+    <h3 class="mt-5">Select Column for Classification</h3>
+        <div class="row">
+            {% for title in df_titles %}                 
+                <div class="col-lg-3 col-sm-6 d-flex align-items-center">
+                    <input class="form-check-input me-3" type="radio" name="preprocess" id="radio-{{title}}" value="{{title}}" 
+                    {% if title == preprocess %} checked=true {% endif %}>
+                    <label for="radio-{{title}}">{{title}}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="btn btn-primary" formaction="/preprocess">Process</button>
+    </form>
+
+
+</div>
+<script>
+    $("tr").css("text-align", "center");    
+    // for (var i = 0; i <$(".eda-content").html().search("mean_texture"); i++){
+        // $(".eda-content").html($(".eda-content").html().replace("mean_texture", ""));  
+        // console.log(i);      
+    // }
+</script>
+{% endblock %}
